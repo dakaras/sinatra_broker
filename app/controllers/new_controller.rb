@@ -10,38 +10,32 @@ class AccountsController < ApplicationController
     end
   end
 
+  # Create
   get "/accounts/new" do
-    if !logged_in
+    if !logged_in?
       redirect '/login'
     else
-      erb :'golf_bags/new'
+      @stocks = Stock.all
+      erb :'accounts/new'
     end
   end
 
-  get "/accounts/:id/edit" do
-    if !logged_in
-      redirect '/login'
-    else
-      @account = Account.find(params[:id])
-      erb :'accounts/edit'
-    end
-  end
-
-  post "/accounts/:id" do
-    if !logged_in
-      redirect '/login'
-    else
-      @account = Account.find(params[:id])
-      unless Account.valid_params?(params)
-        redirect "/accounts/#{@account.id}/edit"
+  post '/accounts' do
+    @account = Account.new(params[:account])
+    if @account.save
+      session[:id] = @account.id
+      if params[:stock][:name] != ""
+        @account.stock.create(params[:account][:stock])
       end
-      @account.update(params.select{|k|k=="name" || k=="category"})
+      @account.save
       redirect "/accounts/#{@account.id}"
+    else
+      redirect '/signup'
     end
   end
 
   get "/accounts/:id" do
-    if !logged_in
+    if !logged_in?
       redirect '/login'
     else
       @account = Account.find(params[:id])
@@ -49,15 +43,40 @@ class AccountsController < ApplicationController
     end
   end
 
-  post "/accounts" do
-    if !logged_in
+  # Update
+  get "/accounts/:id/edit" do
+    if !logged_in?
       redirect '/login'
     else
-      unless Account.valid_params?(params)
-        redirect "/accounts/new"
-      end
-      Accounts.create(params)
-      redirect "/accounts"
+      @account = Account.find(params[:id])
+      erb :'accounts/edit'
     end
   end
+
+  patch "/accounts/:id" do
+    if !logged_in?
+      redirect '/login'
+    else
+      @account = Account.find(params[:id])
+      unless Account.valid_params?(params)
+        redirect "/accounts/#{@account.id}/edit"
+      end
+      @account.update
+      redirect "/accounts/#{@account.id}"
+    end
+  end
+
+  # Delete
+  delete '/accounts/:id/delete' do
+    if logged_in?
+      @account = Account.find_by(params[:id])
+      if @account
+        @account.delete
+        redirect '/accounts'
+      else
+        redirect '/login'
+      end
+    end
+  end
+  
 end

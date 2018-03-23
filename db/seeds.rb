@@ -9,8 +9,10 @@ gabriel = User.create(username: 'gabriel_022', email: 'gabriel@hotmail.com', pas
 general_electric = Stock.create(name: 'General Electric', ticker: 'GE')
 apple = Stock.create(name: 'Apple', ticker: 'APPL')
 microsoft = Stock.create(name: 'Microsoft', ticker: 'MSFT')
+standard = Stock.create(name: 'S&P500', ticker: 'SPY')
 
 # Accounts
-Account.create(name:'speculative', user_id: "#{michael.id}", stocks_id: ["#{apple.id}"], category: "growth")
-Account.create(name:'retirement', user_id: "#{michael.id}", stocks_id: ["#{general_electric.id}"], category: "value")
-Account.create(name:'Gabriel', user_id: "#{gabriel.id}", stocks_id: ["#{microsoft.id}"], category: "growth")
+Account.create(name:'speculative', user_id: "#{michael.id}", stocks_id: ["#{apple.id}"], category: "Growth")
+Account.create(name:'retirement', user_id: "#{michael.id}", stocks_id: ["#{general_electric.id}"], category: "Value")
+Account.create(name:'tech', user_id: "#{gabriel.id}", stocks_id: ["#{microsoft.id}"], category: "Growth")
+Account.create(name:'beta', user_id:"#{{raphael.id}}", stocks_id: ["#{standard.id}"], category: "Index")
