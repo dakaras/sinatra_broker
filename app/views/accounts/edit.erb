@@ -1,6 +1,7 @@
 <h1>Edit <%= @account.name %></h1>
 
 <form action="/accounts/<%=@account.id %>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="patch">
   <label> Account Name: </label>
   <input type="text" name="name" value="<%=@account.name %>"> </br>
 
@@ -11,5 +12,15 @@
     <option value="Growth">Saab</option>
     <option value="Index">Mercedes</option>
   </select>
+
+  <label> Edit Stock Portfolio: </label>
+  <% @account.stocks.each do |stock| %>
+    <label> <%= stock.name %></label>
+    <input type="checkbox" id="<%= stock.id %>" name="account[stock_ids][]" value="<%= stock.id %>" <%='checked' if @account.stocks.include?(stock) %>>
+  <% end  %>
+
+  <label> Add New Stock: </label>
+  <input type="text" id="new_stock" name="stock[name]">
+
   <input type="submit" value="Update">
 </form>

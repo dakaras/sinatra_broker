@@ -10,9 +10,11 @@ general_electric = Stock.create(name: 'General Electric', ticker: 'GE')
 apple = Stock.create(name: 'Apple', ticker: 'APPL')
 microsoft = Stock.create(name: 'Microsoft', ticker: 'MSFT')
 standard = Stock.create(name: 'S&P500', ticker: 'SPY')
+union = Stock.create(name: 'Union Pacific', ticker: 'UNP')
+intel = Stock.create(name: 'Intel', ticker: 'INTC')
 
 # Accounts
 Account.create(name:'speculative', user_id: "#{michael.id}", stocks_id: ["#{apple.id}"], category: "Growth")
 Account.create(name:'retirement', user_id: "#{michael.id}", stocks_id: ["#{general_electric.id}"], category: "Value")
 Account.create(name:'tech', user_id: "#{gabriel.id}", stocks_id: ["#{microsoft.id}"], category: "Growth")
-Account.create(name:'beta', user_id:"#{{raphael.id}}", stocks_id: ["#{standard.id}"], category: "Index")
+Account.create(name:'beta', user_id:"#{raphael.id}", stocks_id: ["#{standard.id}"], category: "Index")
