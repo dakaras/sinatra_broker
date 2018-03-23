@@ -1,0 +1,10 @@
+<%= @account.name %> </br>
+<%= @account.category%> </br>
+
+<h2>Stocks</h2>
+<ul>
+<% @account.stocks.each do |stock| %>
+  <li><a href="/stocks/<%=stock.id%>"><%= stock.name %></a></li>
+<% end%>
+</ul>
+<a href="/accounts/<%=@account.id%>/edit">Edit</a>

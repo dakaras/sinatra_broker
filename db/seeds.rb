@@ -11,6 +11,6 @@ apple = Stock.create(name: 'Apple', ticker: 'APPL')
 microsoft = Stock.create(name: 'Microsoft', ticker: 'MSFT')
 
 # Accounts
-Account.create(first_name:'Michael', last_name: 'Smith', user_id: "#{michael.id}", stocks_id: ["#{apple.id}"], category: "growth")
-Account.create(first_name:'Michael', last_name: 'Smith', user_id: "#{michael.id}", stocks_id: ["#{general_electric.id}"], category: "value")
-Account.create(first_name:'Gabriel', last_name: 'Angel', user_id: "#{gabriel.id}", stocks_id: ["#{microsoft.id}"], category: "growth")
+Account.create(name:'speculative', user_id: "#{michael.id}", stocks_id: ["#{apple.id}"], category: "growth")
+Account.create(name:'retirement', user_id: "#{michael.id}", stocks_id: ["#{general_electric.id}"], category: "value")
+Account.create(name:'Gabriel', user_id: "#{gabriel.id}", stocks_id: ["#{microsoft.id}"], category: "growth")

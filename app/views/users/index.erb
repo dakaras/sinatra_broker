@@ -1,0 +1,25 @@
+<% if @accounts.empty? %>
+      <p>You have not opened an account with Sinatra Broker yet!</p>
+
+  <% else %>
+  <p>Click on an account to view its portfolio.</p>
+
+    <% @accounts.each do |account| %>
+
+        <h2><a href="/accounts/<%= account.id %>"><%= account.name %></a></h2>
+        <p>Category: <%= account.category %></p>
+
+        <p>Stocks: </p>
+          <% account.stocks.each do |stock|%>
+            <p><%= stock.name %></p>
+          <% end %>
+
+        <a href="/accounts/<%= account.id %>/edit"> Edit Account </a> <br>
+
+        <form action="/accounts/<%= account.id %>/delete" method="post">
+          <input type="hidden" id="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete Account">
+        </form>
+
+    <% end %>
+<% end %>

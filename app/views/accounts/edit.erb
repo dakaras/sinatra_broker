@@ -1,0 +1,15 @@
+<h1>Edit <%= @account.name %></h1>
+
+<form action="/accounts/<%=@account.id %>" method="POST">
+  <label> Account Name: </label>
+  <input type="text" name="name" value="<%=@account.name %>"> </br>
+
+  <label> Account Category: </label>
+  <input type="text" name="category" value="<%=@account.category %>"> </br>
+  <select>
+    <option value="Value">Volvo</option>
+    <option value="Growth">Saab</option>
+    <option value="Index">Mercedes</option>
+  </select>
+  <input type="submit" value="Update">
+</form>

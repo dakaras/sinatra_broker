@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Weclome to Sinatra Brokerage Accounts</title>
+</head>
+<body>
+  <nav>
+    <% if logged_in? %>
+    <p>Welcome, <%=current_user.username %></p>
+    <a href="/logout"> Log Out </a>
+    <% end %>
+  </nav>
+
+  <%= yield %>
+
+</body>
+</html>
