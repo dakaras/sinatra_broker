@@ -6,10 +6,20 @@
 
   <label> Account Category: </label>
   <input type="text" name="category"> </br>
-  <select>
+  <!-- <select>
     <option value="Value">Volvo</option>
     <option value="Growth">Saab</option>
     <option value="Index">Mercedes</option>
-  </select>
+  </select> -->
+
+  <label> Stock Portfolio: </label>
+  <% @account.stocks.each do |stock| %>
+    <label> <%= stock.name %></label>
+    <input type="checkbox" id="<%= stock.id %>" name="account[stock_ids][]" value="<%= stock.id %>">
+  <% end  %>
+
+  <label> Add New Stock: </label>
+  <input type="text" id="new_stock" name="stock[name]">
+
   <input type="submit" value="Create">
 </form>
